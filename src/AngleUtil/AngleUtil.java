@@ -37,11 +37,4 @@ public class AngleUtil {
 		return reverseClockRotationAngle == 0 ? 0 : 360-reverseClockRotationAngle;
 		
 	}
-	
-	public static void main(String[] args) {
-		Vector v1 = new Vector(-2, 2);
-		Vector v2 = new Vector(-1, -1);
-		System.out.println(getClockRotationAngle(v1, v2));
-		System.out.println(getReverseClockRotationAngle(v1, v2));
-	}
 }
