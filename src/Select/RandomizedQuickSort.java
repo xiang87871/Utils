@@ -1,7 +1,5 @@
 package Select;
 
-import java.util.Arrays;
-
 import SortUtil.QuickSort;
 
 public class RandomizedQuickSort {
