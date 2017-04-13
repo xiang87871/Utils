@@ -2,8 +2,12 @@
 <!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
 <log4j:configuration xmlns:log4j='http://jakarta.apache.org/log4j/'>
 
-<!-- %c:类全名 	%d:时间 	%f:类名 	%l:位置 	%m:信息 	%n:换行 	%p:级别 	%r:耗时	%t:线程名 -->
+	<!-- %c:类全名 %d:时间 %f:类名 %l:位置 %m:信息 %n:换行 %p:级别 %r:耗时 %t:线程名 -->
 
+
+	<appender name="layout" class="org.apache.log4j.PatternLayout">
+		<param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss} %-5p] [%t-%r] %l %m%n" />
+	</appender>
 
 	<!-- 打印在控制台 -->
 	<appender name="consoleAppender" class="org.apache.log4j.ConsoleAppender">
@@ -30,7 +34,7 @@
 		<layout class="org.apache.log4j.PatternLayout">
 			<param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss} %-5p] [%t-%r] %l %m%n" />
 		</layout>
-				
+
 		<!--过滤器设置输出的级别 -->
 		<filter class="org.apache.log4j.varia.LevelRangeFilter">
 			<param name="levelMin" value="TRACE" />
@@ -46,8 +50,8 @@
 		<layout class="org.apache.log4j.PatternLayout">
 			<param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss} %-5p] [%t-%r] %l %m%n" />
 		</layout>
-		
-				
+
+
 		<!--过滤器设置输出的级别 -->
 		<filter class="org.apache.log4j.varia.LevelRangeFilter">
 			<param name="levelMin" value="DEBUG" />
@@ -59,12 +63,12 @@
 	<appender name="hourRolliyngAppender" class="org.apache.log4j.DailyRollingFileAppender">
 		<param name="File" value="logs/interlocution-web/interlocution-web.log" />
 		<param name="DatePattern" value="'.'yyyyww" />
-		
+
 		<layout class="org.apache.log4j.PatternLayout">
 			<param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss} %-5p] [%t-%r] %l %m%n" />
 		</layout>
-		
-				
+
+
 		<!--过滤器设置输出的级别 -->
 		<filter class="org.apache.log4j.varia.LevelRangeFilter">
 			<param name="levelMin" value="DEBUG" />
@@ -76,11 +80,11 @@
 	<appender name="dayRolliyngAppender" class="org.apache.log4j.DailyRollingFileAppender">
 		<param name="File" value="logs/interlocution-web/interlocution-web.log" />
 		<param name="DatePattern" value="'.'yyyyMMdd" />
-		
+
 		<layout class="org.apache.log4j.PatternLayout">
 			<param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss} %-5p] [%t-%r] %l %m%n" />
 		</layout>
-				
+
 		<!--过滤器设置输出的级别 -->
 		<filter class="org.apache.log4j.varia.LevelRangeFilter">
 			<param name="levelMin" value="DEBUG" />
@@ -92,32 +96,145 @@
 	<appender name="hourRolliyngAppender" class="org.apache.log4j.DailyRollingFileAppender">
 		<param name="File" value="logs/interlocution-web/interlocution-web.log" />
 		<param name="DatePattern" value="'.'yyyyMMddHH" />
-		
+
 		<layout class="org.apache.log4j.PatternLayout">
 			<param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss} %-5p] [%t-%r] %l %m%n" />
 		</layout>
-				
+
 		<!--过滤器设置输出的级别 -->
 		<filter class="org.apache.log4j.varia.LevelRangeFilter">
 			<param name="levelMin" value="TRACE" />
 			<param name="levelMax" value="ERROR" />
 		</filter>
 	</appender>
+
+	<!-- web start -->
+	<appender name="web_dayRolliyngAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="logs/interlocution-web/interlocution-web.log" />
+		<param name="DatePattern" value="'.'yyyyMMdd" />
+
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss} %-5p] [%t-%r] %l %m%n" />
+		</layout>
+
+		<!--过滤器设置输出的级别 -->
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="levelMin" value="DEBUG" />
+			<param name="levelMax" value="ERROR" />
+		</filter>
+	</appender>
+
+	<!-- web end -->
+
+	<!-- dialog start -->
+	<appender name="dialog_dayRolliyngAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="logs/dialog/dialog.log" />
+		<param name="DatePattern" value="'.'yyyyMMdd" />
+
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss} %-5p] [%t-%r] %l %m%n" />
+		</layout>
+
+		<!--过滤器设置输出的级别 -->
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="levelMin" value="DEBUG" />
+			<param name="levelMax" value="ERROR" />
+		</filter>
+	</appender>
+
+
+	<!-- end start -->
+
+	<!-- data_web_logger start -->
+	<appender name="data_web_dayRolliyngAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="logs/data_web/data_web.log" />
+		<param name="DatePattern" value="'.'yyyyMMdd" />
+
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss} %-5p] [%t-%r] %l %m%n" />
+		</layout>
+
+		<!--过滤器设置输出的级别 -->
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="levelMin" value="DEBUG" />
+			<param name="levelMax" value="ERROR" />
+		</filter>
+	</appender>
+
+
+	<!-- data_web_logger end -->
+
+
+	<!-- intellect_core_logger start -->
+
+	<appender name="intellect_core_dayRolliyngAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="logs/intellect_core/intellect_core.log" />
+		<param name="DatePattern" value="'.'yyyyMMdd" />
+
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss} %-5p] [%t-%r] %l %m%n" />
+		</layout>
+		
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="levelMin" value="DEBUG" />
+			<param name="levelMax" value="ERROR" />
+		</filter>
+	</appender>
 	
+	
+	<!-- intellect_core_logger end -->
+
+	<!-- qtj_logger end -->
+	
+	<appender name="qtj_dayRolliyngAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="logs/qtj/qtj.log" />
+		<param name="DatePattern" value="'.'yyyyMMdd" />
+
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss} %-5p] [%t-%r] %l %m%n" />
+		</layout>
+
+		<!--过滤器设置输出的级别 -->
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="levelMin" value="DEBUG" />
+			<param name="levelMax" value="ERROR" />
+		</filter>
+	</appender>
+	
+	<!-- qtj_logger end -->
+
 	<!-- 指定logger的设置，additivity指示是否遵循缺省的继承机制 -->
-	<!-- <logger name="com" additivity="false">
+	<logger name="com" additivity="false">
 		<level value="info" />
-		<appender-ref ref="dayRolliyngAppender" />
-		<appender-ref ref="hourRolliyngAppender" />
+		<appender-ref ref="consoleAppender" />
+	</logger>
+
+	<logger name="web_logger" additivity="false">
+		<level value="info" />
+		<appender-ref ref="web_dayRolliyngAppender" />
+		<appender-ref ref="consoleAppender" />
+	</logger>
+
+	<logger name="dialog_logger" additivity="false">
+		<level value="info" />
+		<appender-ref ref="dialog_dayRolliyngAppender" />
+		<appender-ref ref="consoleAppender" />
+	</logger>
+	<!-- <logger name="data_web_logger" additivity="false">
+		<level value="info" />
+		<appender-ref ref="data_web_dayRolliyngAppender" />
+		<appender-ref ref="consoleAppender" />
+	</logger>
+	<logger name="intellect_core_logger" additivity="false">
+		<level value="info" />
+		<appender-ref ref="intellect_core_dayRolliyngAppender" />
+		<appender-ref ref="consoleAppender" />
+	</logger>
+	<logger name="qtj_logger" additivity="false">
+		<level value="info" />
+		<appender-ref ref="qtj_dayRolliyngAppender" />
 		<appender-ref ref="consoleAppender" />
 	</logger> -->
-	
-	
-	<!-- 指定logger的设置，additivity指示是否遵循缺省的继承机制 -->
-	<logger name="testConsole" additivity="false">
-		<level value="info" />
-		<appender-ref ref="hourRolliyngAppender" />
-	</logger>
 
 	<!-- 根logger的设置 -->
 	<root>
