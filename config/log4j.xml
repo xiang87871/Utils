@@ -5,10 +5,6 @@
 <!-- %c:类全名 	%d:时间 	%f:类名 	%l:位置 	%m:信息 	%n:换行 	%p:级别 	%r:耗时	%t:线程名 -->
 
 
-	<appender name="layout" class="org.apache.log4j.PatternLayout">
-		<param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss} %-5p] [%t-%r] %l %m%n" />
-	</appender>
-
 	<!-- 打印在控制台 -->
 	<appender name="consoleAppender" class="org.apache.log4j.ConsoleAppender">
 		<layout class="org.apache.log4j.PatternLayout">
@@ -107,13 +103,20 @@
 			<param name="levelMax" value="ERROR" />
 		</filter>
 	</appender>
-
+	
 	<!-- 指定logger的设置，additivity指示是否遵循缺省的继承机制 -->
-	<logger name="com" additivity="false">
+	<!-- <logger name="com" additivity="false">
 		<level value="info" />
 		<appender-ref ref="dayRolliyngAppender" />
 		<appender-ref ref="hourRolliyngAppender" />
 		<appender-ref ref="consoleAppender" />
+	</logger> -->
+	
+	
+	<!-- 指定logger的设置，additivity指示是否遵循缺省的继承机制 -->
+	<logger name="testConsole" additivity="false">
+		<level value="info" />
+		<appender-ref ref="hourRolliyngAppender" />
 	</logger>
 
 	<!-- 根logger的设置 -->
