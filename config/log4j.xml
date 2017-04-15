@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j='http://jakarta.apache.org/log4j/'>
+
+<!-- %c:类全名 	%d:时间 	%f:类名 	%l:位置 	%m:信息 	%n:换行 	%p:级别 	%r:耗时	%t:线程名 -->
+
+
+	<appender name="layout" class="org.apache.log4j.PatternLayout">
+		<param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss} %-5p] [%t-%r] %l %m%n" />
+	</appender>
+
+	<!-- 打印在控制台 -->
+	<appender name="consoleAppender" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss} %-5p] [%t-%r] %l %m%n" />
+		</layout>
+
+		<!--过滤器设置输出的级别 -->
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="levelMin" value="TRACE" />
+			<param name="levelMax" value="ERROR" />
+		</filter>
+
+	</appender>
+
+	<!-- 随应用启动打印，重新启动后覆盖 -->
+	<appender name="rollingAppender" class="org.apache.log4j.RollingFileAppender">
+		<param name="File" value="logs/interlocution-web/interlocution-web.log.out" /><!-- 
+			设置日志输出文件名 -->
+		<!-- 设置是否在重新启动服务时，在原有日志的基础添加新日志 -->
+		<param name="Append" value="false" />
+		<param name="MaxBackupIndex" value="10" />
+
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss} %-5p] [%t-%r] %l %m%n" />
+		</layout>
+				
+		<!--过滤器设置输出的级别 -->
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="levelMin" value="TRACE" />
+			<param name="levelMax" value="ERROR" />
+		</filter>
+	</appender>
+
+	<!-- 根据[月]为周期打印 -->
+	<appender name="hourRolliyngAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="logs/interlocution-web/interlocution-web.log" />
+		<param name="DatePattern" value="'.'yyyyMM" />
+
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss} %-5p] [%t-%r] %l %m%n" />
+		</layout>
+		
+				
+		<!--过滤器设置输出的级别 -->
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="levelMin" value="DEBUG" />
+			<param name="levelMax" value="ERROR" />
+		</filter>
+	</appender>
+
+	<!-- 根据[周]为周期打印 -->
+	<appender name="hourRolliyngAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="logs/interlocution-web/interlocution-web.log" />
+		<param name="DatePattern" value="'.'yyyyww" />
+		
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss} %-5p] [%t-%r] %l %m%n" />
+		</layout>
+		
+				
+		<!--过滤器设置输出的级别 -->
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="levelMin" value="DEBUG" />
+			<param name="levelMax" value="ERROR" />
+		</filter>
+	</appender>
+
+	<!-- 根据[天]为周期打印 -->
+	<appender name="dayRolliyngAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="logs/interlocution-web/interlocution-web.log" />
+		<param name="DatePattern" value="'.'yyyyMMdd" />
+		
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss} %-5p] [%t-%r] %l %m%n" />
+		</layout>
+				
+		<!--过滤器设置输出的级别 -->
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="levelMin" value="DEBUG" />
+			<param name="levelMax" value="ERROR" />
+		</filter>
+	</appender>
+
+	<!-- 根据[小时]为周期打印 -->
+	<appender name="hourRolliyngAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="logs/interlocution-web/interlocution-web.log" />
+		<param name="DatePattern" value="'.'yyyyMMddHH" />
+		
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss} %-5p] [%t-%r] %l %m%n" />
+		</layout>
+				
+		<!--过滤器设置输出的级别 -->
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="levelMin" value="TRACE" />
+			<param name="levelMax" value="ERROR" />
+		</filter>
+	</appender>
+
+	<!-- 指定logger的设置，additivity指示是否遵循缺省的继承机制 -->
+	<logger name="com" additivity="false">
+		<level value="info" />
+		<appender-ref ref="dayRolliyngAppender" />
+		<appender-ref ref="hourRolliyngAppender" />
+		<appender-ref ref="consoleAppender" />
+	</logger>
+
+	<!-- 根logger的设置 -->
+	<root>
+		<priority value="debug" />
+	</root>
+
+</log4j:configuration>
